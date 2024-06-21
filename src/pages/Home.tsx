@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import GenreList from "../components/GenreList";
+import GenreListSidebar from "../components/GenreListSidebar";
 import Banner from "../components/Banner";
 import TrendingGames from "../components/TrendingGames";
 import globalAPI from "../services/globalAPI";
@@ -38,16 +38,16 @@ function Home() {
   };
 
   return (
-    <div className="grid grid-cols-4 px-5">
-      <div className="hidden md:block">
-        <GenreList
+    <div className="flex">
+      <div>
+        <GenreListSidebar
           genreId={(genreId: any) => getGameListByGenreId(genreId)}
           genreName={(genreName: any) => setGenreName(genreName)}
         />
       </div>
-      <div className="col-span-4 md:col-span-3">
+      <div>
         {gamesList.length > 0 && (
-          <div>
+          <div className="ml-8">
             <Banner gameBanner={gamesList[0]} />
             <TrendingGames gameList={gamesList} />
             <GamesByGenresId
