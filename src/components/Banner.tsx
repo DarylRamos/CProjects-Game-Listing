@@ -1,5 +1,3 @@
-import React from "react";
-
 function Banner({ gameBanner }: any) {
   return (
     <div className="relative">

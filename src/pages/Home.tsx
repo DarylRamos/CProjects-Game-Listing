@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import GenreListSidebar from "../components/GenreListSidebar";
 import Banner from "../components/Banner";
 import TrendingGames from "../components/TrendingGames";

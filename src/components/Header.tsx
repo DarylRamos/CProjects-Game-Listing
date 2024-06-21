@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import logo from "../assets/images/logo.png";
 import { HiMagnifyingGlass, HiMoon, HiSun } from "react-icons/hi2";
 import { useTheme } from "../context/ThemeContext";

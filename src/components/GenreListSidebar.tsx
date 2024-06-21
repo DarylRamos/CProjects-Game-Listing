@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import globalAPI from "../services/globalAPI";
 import { LuArrowRightFromLine, LuArrowLeftFromLine } from "react-icons/lu";
+import { useMediaQuery } from "@mui/material";
 
 function GenreListSidebar({ genreId, genreName }: any) {
   interface genreList {
@@ -14,6 +15,16 @@ function GenreListSidebar({ genreId, genreName }: any) {
   const [genreList, setGenreList] = useState<genreList[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [expanded, setExpanded] = useState(true);
+
+  const isMediumDevice = useMediaQuery("(min-width: 1024px)");
+
+  useEffect(() => {
+    if (isMediumDevice) {
+      setExpanded(true);
+    } else {
+      setExpanded(false);
+    }
+  }, [isMediumDevice]);
 
   useEffect(() => {
     getGenreList();
@@ -34,7 +45,7 @@ function GenreListSidebar({ genreId, genreName }: any) {
       <div className="pb-2 flex justify-between items-center dark:text-white">
         <p
           className={`text-[25px] font-semibold border-none overflow-hidden transition-all ${
-            expanded ? "w-72" : "w-0"
+            expanded ? "w-64" : "w-0"
           }`}
         >
           Genre
@@ -43,7 +54,7 @@ function GenreListSidebar({ genreId, genreName }: any) {
           onClick={() => setExpanded(!expanded)}
           className="text-[20px] p-4 rounded-xl hover:bg-gray-100 hover:dark:bg-gray-800"
         >
-          {expanded ? <LuArrowRightFromLine /> : <LuArrowLeftFromLine />}
+          {expanded ? <LuArrowLeftFromLine /> : <LuArrowRightFromLine />}
         </button>
       </div>
 
@@ -64,7 +75,7 @@ function GenreListSidebar({ genreId, genreName }: any) {
           />
           <p
             className={`dark:text-white ml-1 text-[18px] group-hover:font-bold transition-all overflow-hidden ${
-              expanded ? "w-72" : "w-0"
+              expanded ? "w-64" : "w-0"
             }`}
           >
             {item.name}
@@ -73,7 +84,8 @@ function GenreListSidebar({ genreId, genreName }: any) {
           {!expanded && (
             <div
               className={`absolute z-10 left-full rounded-md px-5 py-2 ml-7
-            bg-gray-200 dark:bg-gray-700 dark:text-white text-lg whitespace-pre font-semibold invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0`}
+            bg-gray-200 dark:bg-gray-700 dark:text-white text-lg whitespace-pre font-semibold 
+            invisible opacity-20 -translate-x-3 transition-all group-hover:visible group-hover:opacity-100 group-hover:translate-x-0`}
             >
               {item.name}
             </div>
